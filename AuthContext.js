@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
       try {
         userToken = await AsyncStorage.getItem('userToken');
 
+        // This might not be used in the end.. TODO: Remove if not needed
         await Font.loadAsync({
           Roboto: require('native-base/Fonts/Roboto.ttf'),
           Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
@@ -77,7 +78,7 @@ const AuthProvider = ({ children }) => {
 const useAuthState = () => {
   const context = useContext(AuthStateContext);
   if (context === undefined) {
-    throw new Error('useAuthState must be used within a AuthProvider');
+    throw new Error('useAuthState must be used within a AuthProvider.');
   }
 
   return context;
@@ -86,7 +87,7 @@ const useAuthState = () => {
 const useAuthDispatch = () => {
   const context = useContext(AuthDispatchContext);
   if (context === undefined) {
-    throw new Error('useAuthDispatch must be used within a AuthProvider');
+    throw new Error('useAuthDispatch must be used within a AuthProvider.');
   }
 
   return context;
