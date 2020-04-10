@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ApplicationProvider, IconRegistry, Layout } from "@ui-kitten/components"
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { mapping, light, dark } from "@eva-design/eva";
+import { ApplicationProvider, IconRegistry, Layout } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { mapping, light, dark } from '@eva-design/eva';
 
 // import CarLocation from './screens/CarLocation';
 import SplashScreen from './screens/SplashScreen';
@@ -40,13 +40,13 @@ import { AuthProvider } from './AuthContext';
 const themes = {
   light: {
     theme: light,
-    icon: "sun",
-    text: "LIGHT",
+    icon: 'sun',
+    text: 'LIGHT',
   },
   dark: {
     theme: dark,
-    icon: "moon",
-    text: "DARK",
+    icon: 'moon',
+    text: 'DARK',
   },
 };
 
@@ -55,10 +55,9 @@ export default function App() {
   const theme = themes[themeName].theme;
 
   return (
-    <>  
+    <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider mapping={mapping} theme={theme}>
-        
         <AuthProvider>
           <SplashScreen />
 
@@ -100,9 +99,8 @@ export default function App() {
             )}
           </Stack.Navigator>
         </NavigationContainer> */}
-
         </AuthProvider>
       </ApplicationProvider>
     </>
   );
-};
+}
