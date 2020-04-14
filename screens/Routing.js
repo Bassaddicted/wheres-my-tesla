@@ -7,39 +7,32 @@ import Loading from './Loading';
 import SignIn from './SignIn';
 import Main from './Main';
 
-const Stack = createStackNavigator();
+const MainStack = createStackNavigator();
 
 export default function Routing() {
   const state = useAuthState();
 
-  // Implement react-Navigation
-
   return (
-    <>
-      {state.isLoading ? (
-        <Loading />
-      ) : state.userToken === null ? (
-        <SignIn />
-      ) : (
-        // <Stack.Screen
-        //   name="SignIn"
-        //   component={SignInScreen}
-        //   options={{
-        //     title: 'Sign In',
-        //     // When logging out, a pop animation feels intuitive
-        //     // You can remove this if you want the default 'push' animation
-        //     animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-        //   }}
-        // />
-        // <Stack.Screen
-        //   name="CarLocation"
-        //   component={CarLocation}
-        //   options={{
-        //     title: 'Car Location',
-        //   }}
-        // />
-        <Main />
-      )}
-    </>
+    <NavigationContainer>
+      <MainStack.Navigator headerMode="false">
+        {state.isLoading ? (
+          <MainStack.Screen name="Loading" component={Loading} />
+        ) : state.userToken === null ? (
+          <MainStack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{
+              animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+            }}
+          />
+        ) : (
+          <>
+            <MainStack.Screen name="Main" component={Main} />
+
+            {/* Should have Settings Stack with all scrollable view. */}
+          </>
+        )}
+      </MainStack.Navigator>
+    </NavigationContainer>
   );
 }

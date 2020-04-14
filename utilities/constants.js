@@ -5,12 +5,10 @@ const THEMES = {
   light: {
     theme: light,
     icon: 'sun',
-    text: 'LIGHT',
   },
   dark: {
     theme: dark,
     icon: 'moon',
-    text: 'DARK',
   },
 };
 
