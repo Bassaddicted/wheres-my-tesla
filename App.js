@@ -6,6 +6,7 @@ import { mapping } from '@eva-design/eva';
 import Routing from './screens/Routing';
 import { AuthProvider } from './AuthContext';
 import { THEMES } from './utilities/constants';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const [themeName, setThemeName] = useState('dark');
@@ -14,6 +15,7 @@ export default function App() {
 
   return (
     <>
+      <StatusBar hidden={true} />
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider mapping={mapping} theme={theme}>
         <AuthProvider>
