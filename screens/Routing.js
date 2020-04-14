@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 export default function Routing() {
   const state = useAuthState();
 
-  // Implement Navigation
+  // Implement react-Navigation
 
   return (
     <>

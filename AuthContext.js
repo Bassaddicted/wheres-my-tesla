@@ -9,21 +9,18 @@ const AuthDispatchContext = createContext();
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case 'APP_LOAD_RESTORE_TOKEN':
-      console.log('APP_LOAD_RESTORE_TOKEN');
       return {
         ...state,
         userToken: action.token,
         isLoading: false,
       };
     case 'SIGN_IN':
-      console.log('SIGN_IN');
       return {
         ...state,
         userToken: action.token,
         isSignout: false,
       };
     case 'SIGN_OUT':
-      console.log('SIGN_OUT');
       return {
         ...state,
         userToken: null,
