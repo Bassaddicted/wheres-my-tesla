@@ -1,16 +1,27 @@
-import React from 'react';
-import { Layout, Text, Button } from '@ui-kitten/components';
+import React, { useState } from 'react';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { mapping, light, dark } from '@eva-design/eva';
+import { StatusBar } from 'react-native';
 
-import useAuthContext from '../hooks/useAuthContext';
+import Routing from './Routing';
+import { AuthProvider } from '../AuthContext';
+import { useAppState } from '../AppContext';
+import { THEMES } from '../utilities/constants';
 
 export default function Main() {
-  const { signOut } = useAuthContext();
+  const { settings } = useAppState();
+  const theme = THEMES[settings.theme].theme;
 
   return (
-    <Layout style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Signed in!</Text>
-
-      <Button onPress={() => signOut()}>Sign Out</Button>
-    </Layout>
+    <>
+      <StatusBar hidden={true} />
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider mapping={mapping} theme={theme}>
+        <AuthProvider>
+          <Routing />
+        </AuthProvider>
+      </ApplicationProvider>
+    </>
   );
 }

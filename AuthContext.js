@@ -1,6 +1,4 @@
 import React, { createContext, useReducer, useEffect, useContext } from 'react';
-import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
 import { AsyncStorage } from 'react-native';
 
 const AuthStateContext = createContext();
@@ -8,11 +6,10 @@ const AuthDispatchContext = createContext();
 
 const AuthReducer = (state, action) => {
   switch (action.type) {
-    case 'APP_LOAD_RESTORE_TOKEN':
+    case 'RESTORE_TOKEN':
       return {
         ...state,
         userToken: action.token,
-        isLoading: false,
       };
     case 'SIGN_IN':
       return {
@@ -34,32 +31,23 @@ const AuthReducer = (state, action) => {
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, {
-    isLoading: true,
     isSignout: false,
     userToken: null,
   });
 
   // ComponentDidMount
-  // Load Assets required for the application
   useEffect(() => {
     const bootstrapAsync = async () => {
       let userToken;
-      console.log('bootstrapAsync');
+      console.log('getUserToken From Local Storage!');
 
       try {
         userToken = await AsyncStorage.getItem('userToken');
-
-        // This might not be used in the end.. TODO: Remove if not needed
-        await Font.loadAsync({
-          Roboto: require('native-base/Fonts/Roboto.ttf'),
-          Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-          ...Ionicons.font,
-        });
       } catch (err) {
         console.error(err);
       }
 
-      dispatch({ type: 'APP_LOAD_RESTORE_TOKEN', token: userToken });
+      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
     };
 
     bootstrapAsync();

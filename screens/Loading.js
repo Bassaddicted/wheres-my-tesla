@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     <Layout style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Spinner size="giant" />
-      <Text>Wheres My Tesla Loading...</Text>
+      <Text>Loading Configuration...</Text>
     </Layout>
   );
 }
